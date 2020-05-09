@@ -1,0 +1,57 @@
+Question 1 : App : dossier application, contient controllers et views pour le MVC. Il va gérer les requêtes HTTP.
+Question 2 : Conf : dossier configuration, il va permettre de modifier les codes.
+Question 3 : lib : dossier librairie.
+Question 4 : public : Dossier publication, contient images, javascripts et stylesheets. Il va nous servir à taper notre code qui va créer notre page web.
+Question 5 : test : Dossier test, contient controllers. Il va permettre d’importer les différent package et faire des tests.
+Question 6 : Ils sont stockés dans play-java-seed/target/scala-2.13
+Question 7 : 
+Question 8 : GET / controllers.HomeController.index
+Question 9 : Montre que les classes de contrôleur ne sont jamais instancier.
+Question 10 : La méthode render permet d’afficher le contenu de la page.
+
+Pour afficher "Je suis le controler." 
+
+Dans HomeController : 
+
+package controllers;
+
+import play.mvc.*;
+import views.html.*;
+
+    public class HomeController extends Controller {
+        
+        public Result index() {
+            return ok(index.render("Je suis le controleurs."));
+        }
+        
+}
+
+Dans index.scala.html : 
+
+@(message: String)
+
+@main("Welcome to Play") {
+  <h1>Welcome to Play!</h1>
+}
+
+<html>
+    <body>
+    @message
+    </body>
+</html>
+
+
+
+Afficher "Je suis le viewer et l'obéis" : 
+
+Dans main.scala.html 
+
+// Rajoute d'une div dans le body
+<body>
+        @* And here's where we render the `Html` object containing
+         * the page content. *@
+        @content
+
+        <script src="@routes.Assets.versioned("javascripts/main.js")" type="text/javascript"></script>
+        <div> Je suis le viewer et j'obéis </div>
+    </body>
