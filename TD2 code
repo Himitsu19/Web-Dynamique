@@ -1,0 +1,62 @@
+Helloworld :
+Routes : 1. GET	   /helloworld 		controllers.HomeController.helloworld(fname: String )
+2. GET	    /helloworld		 controllers.HomeController.helloworld(fname: String ?=" world ")
+helloworld.scala.html :
+@(fname : String)
+
+@main("Welcome to Play") {
+  <h1>Welcome to Play!</h1>
+}
+<html>
+    <body>
+    Hello @fname
+    </ body >
+</html >
+
+HomeController :
+public Result helloworld(String fname) {
+            return ok(helloworld.render(fname));
+        }
+
+Formulaire1 : 
+Routes : GET     /formulaire1               controllers.HomeController.formulaire1(fname: String ?="world")
+Formulaire1.scala.html :
+@(fname: String)
+
+<html>
+    <body>
+    @helper.form(action = routes.HomeController.formulaire1() ) {
+        <input name ="fname"/>
+        <input type ="submit" value ="Say hello"/> }
+        Hello @fname
+    </body>
+</html>
+
+HomeController :
+public Result formulaire1(String fname) {
+            return ok(formulaire1.render(fname));
+        }
+
+
+Formulaire2 : 
+
+Routes : GET     /formulaire1               controllers.HomeController.formulaire1(fname: String ?="world", fage: Integer ?=0, fadresse: String ?="rue de la grenouillere")
+Formulaire1.scala.html :
+@(fname: String, age: Integer, adresse: String)
+
+<html>
+    <body>
+    @helper.form(action = routes.HomeController.formulaire1() ) {
+        <input name ="fname" placeholder="Prénom"/>
+        <input type ="number" name="fage" placeholder="Age"/>
+        <input name ="fadresse" placeholder="Adresse"/>
+        <input type ="submit" value="Say hello"/> }
+        je suis @fname, j'ai @age ans et j'habite @adresse.
+    </body>
+</html>
+
+HomeController :
+public Result formulaire1(String fname, Integer fage, String fadresse) {
+            return ok(formulaire1.render(fname, fage, fadresse));
+        }
+
